@@ -1,0 +1,15 @@
+-hosts: tomcat
+  gather_facts: no
+  remote_user: root
+  become: true
+  tasks:
+    -name: create target dir.
+      file: path =/root/soft state = directory
+    -copy:
+        src =/tmp/jdk-8u202-linux-x64.rpm
+        dest =/root/soft/jdk-8u202-linux-x64.rpm
+        owner = root
+        group = root
+        mode = 0644
+    -name: install JDK 14 from a local file
+      yum: name =/root/soft/jdk-8u202-linux-x64.rpm state = present

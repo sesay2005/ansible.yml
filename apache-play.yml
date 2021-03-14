@@ -1,0 +1,13 @@
+[apache]
+192.168.100.251
+192.168.100.253
+[hoge]
+192.168.100.252
+# run play only for apache group
+-name: Install Apache Playbook
+  hosts: apache
+  remote_user: root
+  become: true
+  tasks:
+    -name: task
+ansible-playbook -i host.config playbook.yml
